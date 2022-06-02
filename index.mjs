@@ -16,13 +16,15 @@ const PUBLIC_KEY = '0b91c5aee984a385dd9453eb591668c9d481a018ba12e7213c627aa4c184
 import express from 'express'
 
 const app = express()
-const port = 8080
-const ports = 8443
+const port = 9000
+const ports = 9443
 
-http.createServer(app).listen(port, '127.0.0.1', function() {
+let httpserver = http.createServer(app)
+httpserver.listen(port, '0.0.0.0', function() {
   console.log("HTTP Server listening on port " + port)
 })
-https.createServer(app).listen(ports, '127.0.0.1', function() {
+let httpsserver = https.createServer(app)
+httpsserver.listen(ports, '0.0.0.0', function() {
   console.log("HTTPS Server listening on port " + ports)
 })
 
