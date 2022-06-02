@@ -23,11 +23,8 @@ let httpserver = http.createServer(app)
 httpserver.listen(port, function() {
   console.log("HTTP Server listening on port " + port)
 })
-let httpsserver = https.createServer(app)
-httpsserver.listen({
-  key: fs.readFileSync('server.key', 'utf-8'),
-  cert: fs.readFileSync('server.cert', 'utf-8')
-}, ports, function() {
+let httpsserver = https.createServer(options, app)
+httpsserver.listen(ports, function() {
   console.log("HTTPS Server listening on port " + ports)
 })
 
