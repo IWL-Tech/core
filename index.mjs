@@ -1,6 +1,7 @@
 import http from 'http'
 import tweetnacl from 'tweetnacl';
 import fetch from 'node-fetch'
+import 'dotenv/config'
 
 // Your public key can be found on your application in the Developer Portal
 const PUBLIC_KEY = '0b91c5aee984a385dd9453eb591668c9d481a018ba12e7213c627aa4c184c58a';
@@ -52,7 +53,7 @@ app.get('/evaluator/init', async function(req, res)  {
       default_member_permissions: 8589934592
     }),
     headers: {
-      Authorization: "Bot OTc3ODAzNjgyNTM0MDE5MDgy.GiaGvM.3C1FhEHM8xYlawtqUV0EACBbLhbIZ9UzDcEAVo",
+      Authorization: process.env.TOKEN,
       "Content-Type": "application/json"
     }
   })
@@ -64,7 +65,7 @@ app.get('/evaluator/init', async function(req, res)  {
       description: "Sends you a link to the Evaluate GitHub repository."
     }),
     headers: {
-      Authorization: "Bot OTc3ODAzNjgyNTM0MDE5MDgy.GiaGvM.3C1FhEHM8xYlawtqUV0EACBbLhbIZ9UzDcEAVo",
+      Authorization: process.env.TOKEN,
       "Content-Type": "application/json"
     }
   })
@@ -76,7 +77,7 @@ app.get('/evaluator/init', async function(req, res)  {
       description: "Sends you a link to the Evaluate Sourceforge page."
     }),
     headers: {
-      Authorization: "Bot OTc3ODAzNjgyNTM0MDE5MDgy.GiaGvM.3C1FhEHM8xYlawtqUV0EACBbLhbIZ9UzDcEAVo",
+      Authorization: process.env.TOKEN,
       "Content-Type": "application/json"
     }
   })
