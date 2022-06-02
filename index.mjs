@@ -1,7 +1,13 @@
-import http from 'http'
+import http from 'https'
 import tweetnacl from 'tweetnacl';
 import fetch from 'node-fetch'
 import 'dotenv/config'
+import fs from 'fs'
+
+const options = {
+  key: fs.readFileSync('./key.pem'),
+  cert: fs.readFileSync('./cert.pem')
+}
 
 // Your public key can be found on your application in the Developer Portal
 const PUBLIC_KEY = '0b91c5aee984a385dd9453eb591668c9d481a018ba12e7213c627aa4c184c58a';
@@ -11,7 +17,7 @@ import express from 'express'
 const app = express()
 const port = 3000
 
-http.createServer(app).listen(port, '127.0.0.1')
+http.createServer(options, app).listen(port, '127.0.0.1')
 
 app.get('/', (req, res) => {
   res.send('IWL API')
