@@ -6,8 +6,8 @@ import 'dotenv/config'
 import fs from 'fs'
 
 const options = {
-  key: fs.readFileSync('./key.pem'),
-  cert: fs.readFileSync('./cert.pem')
+  key: fs.readFileSync('./server.key'),
+  cert: fs.readFileSync('./server.cert')
 }
 
 // Your public key can be found on your application in the Developer Portal
