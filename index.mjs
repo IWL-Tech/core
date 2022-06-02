@@ -6,8 +6,8 @@ import 'dotenv/config'
 import fs from 'fs'
 
 const options = {
-  key: fs.readFileSync('./server.key'),
-  cert: fs.readFileSync('./server.cert')
+  key: fs.readFileSync('server.key', 'utf-8'),
+  cert: fs.readFileSync('server.cert', 'utf-8')
 }
 
 // Your public key can be found on your application in the Developer Portal
@@ -20,11 +20,14 @@ const port = 9000
 const ports = 9443
 
 let httpserver = http.createServer(app)
-httpserver.listen(port, '0.0.0.0', function() {
+httpserver.listen(port, function() {
   console.log("HTTP Server listening on port " + port)
 })
 let httpsserver = https.createServer(app)
-httpsserver.listen(ports, '0.0.0.0', function() {
+httpsserver.listen({
+  key: fs.readFileSync('server.key', 'utf-8'),
+  cert: fs.readFileSync('server.cert', 'utf-8')
+}, ports, function() {
   console.log("HTTPS Server listening on port " + ports)
 })
 
