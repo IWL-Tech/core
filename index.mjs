@@ -1,4 +1,5 @@
-import http from 'https'
+import http from 'http'
+import https from 'https'
 import tweetnacl from 'tweetnacl';
 import fetch from 'node-fetch'
 import 'dotenv/config'
@@ -15,9 +16,15 @@ const PUBLIC_KEY = '0b91c5aee984a385dd9453eb591668c9d481a018ba12e7213c627aa4c184
 import express from 'express'
 
 const app = express()
-const port = 3000
+const port = 8080
+const ports = 8443
 
-http.createServer(options, app).listen(port, '127.0.0.1')
+http.createServer(app).listen(port, '127.0.0.1', function() {
+  console.log("HTTP Server listening on port " + port)
+})
+https.createServer(app).listen(ports, '127.0.0.1', function() {
+  console.log("HTTPS Server listening on port " + ports)
+})
 
 app.get('/', (req, res) => {
   res.send('IWL API')
